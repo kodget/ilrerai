@@ -100,7 +100,7 @@ const patientSlice = createSlice({
       }
     },
     updatePatientFromSync: (
-      state,ver
+      state,
       action: PayloadAction<Partial<Patient> & { id: string }>
     ) => {
       const patient = state.patients.find((p) => p.id === action.payload.id);
