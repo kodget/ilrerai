@@ -17,7 +17,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://ilrerai.vercel.app",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"]
   }
 });
