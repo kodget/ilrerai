@@ -1,30 +1,36 @@
 import { useState } from 'react';
-import { 
-  LayoutDashboard, 
-  Building2, 
-  Users, 
-  Megaphone, 
-  BarChart3, 
+import {
+  LayoutDashboard,
+  Building2,
+  Users,
+  Megaphone,
+  BarChart3,
   Settings,
   Menu,
-  X
+  X,
+  Phone,
+  Hash
 } from 'lucide-react';
 
 interface SidebarProps {
   activeSection: string;
   onSectionChange: (section: string) => void;
+  menuItems?: Array<{ id: string; label: string; icon: any }>;
 }
 
-const menuItems = [
+const defaultMenuItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { id: 'facility', label: 'Facility', icon: Building2 },
+  { id: 'services', label: 'Services', icon: Settings },
   { id: 'patients', label: 'Patients', icon: Users },
   { id: 'broadcast', label: 'Broadcast', icon: Megaphone },
+  { id: 'notifications', label: 'SMS & Voice', icon: Phone },
+  { id: 'ussd', label: 'USSD Service', icon: Hash },
   { id: 'analytics', label: 'Analytics', icon: BarChart3 },
   { id: 'settings', label: 'Settings', icon: Settings },
 ];
 
-export default function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
+export default function Sidebar({ activeSection, onSectionChange, menuItems = defaultMenuItems }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (

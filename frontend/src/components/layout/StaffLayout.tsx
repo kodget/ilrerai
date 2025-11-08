@@ -63,6 +63,30 @@ export default function StaffLayout() {
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
 
+  const mobileMenuItems = [
+    { id: 'dashboard', label: 'Dashboard', icon: Home },
+    { id: 'facility', label: 'Facility', icon: Building },
+    { id: 'services', label: 'Services', icon: Settings },
+    { id: 'patients', label: 'Patients', icon: Users },
+    { id: 'broadcast', label: 'Broadcast', icon: MessageSquare },
+    { id: 'notifications', label: 'SMS & Voice', icon: Phone },
+    { id: 'ussd', label: 'USSD Service', icon: Hash },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+    { id: 'settings', label: 'Settings', icon: Settings },
+  ];
+
+  const desktopMenuItems = [
+    { id: 'dashboard', label: 'Dashboard', icon: Home },
+    { id: 'facility', label: 'Facility', icon: Building },
+    { id: 'services', label: 'Services', icon: Settings },
+    { id: 'patients', label: 'Patients', icon: Users },
+    { id: 'broadcast', label: 'Broadcast', icon: MessageSquare },
+    { id: 'notifications', label: 'SMS & Voice', icon: Phone },
+    { id: 'ussd', label: 'USSD Service', icon: Hash },
+    { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+    { id: 'settings', label: 'Settings', icon: Settings },
+  ];
+
   return (
     <div className="h-screen bg-gray-50">
       {/* Mobile Header */}
@@ -94,7 +118,7 @@ export default function StaffLayout() {
               <span className="text-sm text-gray-600">Welcome, {user?.name}</span>
             </div>
             <nav className="p-2">
-              {menuItems.map((item) => {
+              {mobileMenuItems.map((item) => {
                 const Icon = item.icon;
                 return (
                   <button
@@ -155,7 +179,7 @@ export default function StaffLayout() {
       {/* Mobile Bottom Navigation */}
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-30">
         <div className="grid grid-cols-6 gap-1">
-          {menuItems.map((item) => {
+          {mobileMenuItems.slice(0, 6).map((item) => {
             const Icon = item.icon;
             return (
               <button
@@ -169,6 +193,26 @@ export default function StaffLayout() {
               >
                 <Icon className="w-4 h-4 mb-1" />
                 <span className="truncate w-full text-center">{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
+        {/* Additional menu items in a scrollable row */}
+        <div className="flex overflow-x-auto bg-gray-50 border-t border-gray-200">
+          {mobileMenuItems.slice(6).map((item) => {
+            const Icon = item.icon;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActiveSection(item.id)}
+                className={`flex flex-col items-center py-2 px-3 text-xs touch-manipulation whitespace-nowrap ${
+                  activeSection === item.id
+                    ? 'text-blue-600 bg-blue-50'
+                    : 'text-gray-500'
+                }`}
+              >
+                <Icon className="w-4 h-4 mb-1" />
+                <span>{item.label}</span>
               </button>
             );
           })}
